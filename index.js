@@ -28,16 +28,19 @@ app.get("/",(req,res)=>{
     //Current Seconds
     const sec = utc.getSeconds();
 
+    const datetime = `${date}-${month}-${year}_${hours}hr-${min}min-${sec}sec`;
     const data = `The Current Timestamp is Date: ${year}-${month}-${date} , Indian Standard Time: ${hours}:${min}:${sec}`;
     console.log(data)
-       fs.writeFile(`${dirpath}/date-time.text`,data,(err)=>{
+       fs.writeFile(`./${datetime}.text`,data,(err)=>{
         if(err){
+            console.log(err)
             res.send("Error in writing File")
             return
         }else{
             res.send("File created Successfully")
         }
        })
+   
 })
 
 
